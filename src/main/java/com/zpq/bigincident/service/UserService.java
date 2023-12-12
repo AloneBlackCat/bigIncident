@@ -1,5 +1,10 @@
 package com.zpq.bigincident.service;
 
+import com.zpq.bigincident.pojo.User;
+
 public interface UserService {
-    String getUser();
+
+    User findByUserName(String username);
+
+    void register(String username, String password);
 }

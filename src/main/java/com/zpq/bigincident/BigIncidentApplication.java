@@ -8,6 +8,7 @@ public class BigIncidentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BigIncidentApplication.class, args);
+        System.out.println("project run success");
     }
 
 }

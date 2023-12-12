@@ -1,13 +1,10 @@
 package com.zpq.bigincident.pojo;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.Date;
 
-@Getter @Setter
-@ToString
+@Data
 public class User {
     private Integer id;
     private String username;
