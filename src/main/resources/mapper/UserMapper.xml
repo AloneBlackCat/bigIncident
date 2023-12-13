@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zpq.bigincident.mapper.UserMapper">
+    <resultMap id="UserResult" type="User">
+        <id property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="nickName" column="nickname" />
+        <result property="email" column="email" />
+        <result property="userPic" column="user_pic" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="UserVo">
+        select id, username, password, nickname, email, user_pic, create_time, update_time
+        from user
+    </sql>
+
+
+    <select id="findByUserName" parameterType="User" resultMap="UserResult">
+        <include refid="UserVo" />
+        where username = #{username}
+    </select>
+
+    <insert id="register" parameterType="User">
+        insert into user (
+            <if test="username != null and username != '' ">username,</if>
+            <if test="password != null and password != '' ">password,</if>
+            create_time,update_time
+        )values(
+            <if test="username != null and username != '' ">#{username},</if>
+            <if test="password != null and password != '' ">#{password},</if>
+            now(),now()
+        )
+    </insert>
+
+
+</mapper>

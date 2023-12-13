@@ -6,3 +6,15 @@ spring:
     url: jdbc:mysql://localhost:3306/big_event?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: 439454
+mybatis:
+  # 检索指定包别名
+  type-aliases-package: com.zpq.bigincident.pojo
+  # 配置mapper的扫描,寻找映射文件
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  # 加载全局的配置文件
+  config-location: classpath:mybatis/mybatis-config.xml
+
+logging:
+  level:
+    com.zpq.bigincident.mapper: debug
+    org.springframework: warn
