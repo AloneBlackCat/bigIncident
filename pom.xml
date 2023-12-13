@@ -17,6 +17,13 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
+
+        <!-- 参数校验 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
         <!-- lombok插件 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
