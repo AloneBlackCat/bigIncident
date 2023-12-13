@@ -3,12 +3,17 @@ package com.zpq.bigincident.controller;
 import com.zpq.bigincident.pojo.Result;
 import com.zpq.bigincident.pojo.User;
 import com.zpq.bigincident.service.impl.UserServiceImpl;
+import com.zpq.bigincident.utils.JwtUtil;
+import com.zpq.bigincident.utils.Md5Util;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Validated
 @RestController
@@ -32,5 +37,27 @@ public class UserController {
             // 用户名被占用
             return Result.error("当前用户名已经存在,请换一个吧");
         }
+    }
+
+    // 登录
+    @PostMapping("/login")
+    public <T> Result<T> login(@Pattern(regexp = "^\\S{5,16}$") String username,
+                               @Pattern(regexp = "^\\S{5,16}$") String password) {
+        User loginUser = userService.findByUserName(username);
+        // 根据用户名查询用户是否存在
+        if (loginUser == null) {
+            return Result.error("用户不存在");
+        }
+        // 判断密码是否正确
+        if (Md5Util.getMD5String(password).equals(loginUser.getPassword())){
+            // 登录成功
+            Map<String,Object> map = new HashMap<>();
+            map.put("id",loginUser.getId());
+            map.put("username", loginUser.getUsername());
+            // jwt生成token
+            String token = JwtUtil.getToken(map);
+            return Result.success(token);
+        }
+        return Result.error("密码错误");
     }
 }
