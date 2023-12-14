@@ -37,5 +37,13 @@
         <include refid="ArticleVo" />
         where id = #{id}
     </select>
+    <select id="list" resultMap="ArticleResult" parameterType="Article">
+        <include refid="ArticleVo" />
+        <where>
+            create_user = #{createUser}
+            <if test="categoryId != null and categoryId != ''" >and category_id = #{categoryId}</if>
+            <if test="state != null and state != '' ">and `state` = #{state} </if>
+        </where>
+    </select>
 
 </mapper>

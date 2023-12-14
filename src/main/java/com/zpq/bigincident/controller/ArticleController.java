@@ -1,6 +1,7 @@
 package com.zpq.bigincident.controller;
 
 import com.zpq.bigincident.pojo.Article;
+import com.zpq.bigincident.pojo.PageBean;
 import com.zpq.bigincident.pojo.Result;
 import com.zpq.bigincident.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,15 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @GetMapping("/list")
+    public <T> Result<T> list(Integer pageNum,
+                              Integer pageSize,
+                              /*@RequestParam(required = false)*/ Integer categoryId,
+                              /*@RequestParam(required = false)*/ String state) {
+        PageBean<Article> articleList = articleService.list(pageNum, pageSize, categoryId, state);
+        return Result.success(articleList);
+    }
 
     @GetMapping
     public <T> Result<T> getArticle(Integer id) {

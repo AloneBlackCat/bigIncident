@@ -1,6 +1,7 @@
 package com.zpq.bigincident.service;
 
 import com.zpq.bigincident.pojo.Article;
+import com.zpq.bigincident.pojo.PageBean;
 
 public interface ArticleService {
 
@@ -11,4 +12,6 @@ public interface ArticleService {
     void update(Article article);
 
     void delete(Integer id);
+
+    PageBean<Article> list(Integer pageNum, Integer pageSize, Integer categoryId, String state);
 }

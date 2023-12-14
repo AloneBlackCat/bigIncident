@@ -4,6 +4,8 @@ import com.zpq.bigincident.pojo.Article;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface ArticleMapper {
 
@@ -14,4 +16,6 @@ public interface ArticleMapper {
     void update(Article article);
 
     void delete(@Param("id") Integer id, @Param("createUser") Integer createUser);
+
+    List<Article> list(@Param("categoryId") Integer categoryId, @Param("state") String state, @Param("createUser") Integer userId);
 }
