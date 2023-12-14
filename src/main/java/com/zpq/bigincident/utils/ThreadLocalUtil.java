@@ -1,5 +1,7 @@
 package com.zpq.bigincident.utils;
 
+import java.util.Map;
+
 /**
  * ThreadLocal 工具类
  */
@@ -22,5 +24,11 @@ public class ThreadLocalUtil {
     //清除ThreadLocal 防止内存泄漏
     public static void remove(){
         THREAD_LOCAL.remove();
+    }
+
+    // 获取用户id
+    public static Integer getUserId() {
+        Map<String,Object> map = ThreadLocalUtil.get();
+        return (Integer) map.get("id");
     }
 }
