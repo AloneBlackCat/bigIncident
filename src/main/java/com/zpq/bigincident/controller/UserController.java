@@ -5,6 +5,7 @@ import com.zpq.bigincident.pojo.User;
 import com.zpq.bigincident.service.impl.UserServiceImpl;
 import com.zpq.bigincident.utils.JwtUtil;
 import com.zpq.bigincident.utils.Md5Util;
+import com.zpq.bigincident.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -61,11 +62,10 @@ public class UserController {
 
     // 获取用户的详细信息
     @GetMapping("/userInfo")
-    public <T> Result<T> getUserInfo(@RequestHeader(name = "Authorization") String token) {
+    public <T> Result<T> getUserInfo() {
         // 根据用户名查询用户
-        Map<String, Object> map = JwtUtil.parseToken(token);
+        Map<String,Object> map = ThreadLocalUtil.get();
         String username = (String) map.get("username");
-
         User user = userService.findByUserName(username);
         return Result.success(user);
     }
