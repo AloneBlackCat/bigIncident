@@ -7,6 +7,7 @@ import com.zpq.bigincident.utils.JwtUtil;
 import com.zpq.bigincident.utils.Md5Util;
 import com.zpq.bigincident.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -74,6 +75,13 @@ public class UserController {
     @PutMapping("/update")
     public <T> Result<T> updateUser(@RequestBody @Validated User user) {
         userService.updateUser(user);
+        return Result.success();
+    }
+
+    // 更新用户头像
+    @PatchMapping("/updateAvatar")
+    public <T> Result<T> updateAvatar(@RequestParam @URL String avatarUrl){
+        userService.updateAvatar(avatarUrl);
         return Result.success();
     }
 }

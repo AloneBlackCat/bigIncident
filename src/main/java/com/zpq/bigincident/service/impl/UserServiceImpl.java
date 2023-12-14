@@ -4,8 +4,11 @@ import com.zpq.bigincident.mapper.UserMapper;
 import com.zpq.bigincident.pojo.User;
 import com.zpq.bigincident.service.UserService;
 import com.zpq.bigincident.utils.Md5Util;
+import com.zpq.bigincident.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,5 +32,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(User user) {
         userMapper.updateUser(user);
+    }
+
+    @Override
+    public void updateAvatar(String avatarUrl) {
+        Map<String,Object> map = ThreadLocalUtil.get();
+        Integer id =(Integer) map.get("id");
+        userMapper.updateAvatar(avatarUrl,id);
     }
 }

@@ -24,7 +24,16 @@
         <set>
             <if test="nickName != null and nickName != ''">nickname = #{nickName},</if>
             <if test="email != null and email != '' ">email = #{email},</if>
-            update_time = sysdate()
+            update_time = now()
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updateAvatar" parameterType="User">
+        update user
+        <set>
+            <if test="userPic != null and userPic != '' ">user_pic = #{userPic},</if>
+            update_time = now()
         </set>
         where id = #{id}
     </update>

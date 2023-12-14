@@ -2,6 +2,7 @@ package com.zpq.bigincident.mapper;
 
 import com.zpq.bigincident.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserMapper {
@@ -16,4 +17,6 @@ public interface UserMapper {
     void register(String username, String password);
 
     void updateUser(User user);
+
+    void updateAvatar(@Param("userPic") String userPic,@Param("id") Integer id);
 }
