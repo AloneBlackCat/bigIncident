@@ -19,4 +19,6 @@ public interface UserMapper {
     void updateUser(User user);
 
     void updateAvatar(@Param("userPic") String userPic,@Param("id") Integer id);
+
+    void updatePwd(@Param("password") String password, @Param("id") Integer id);
 }

@@ -37,6 +37,9 @@
         </set>
         where id = #{id}
     </update>
+    <update id="updatePwd" parameterType="User">
+        update user set password = #{password} , update_time = now() where id = #{id}
+    </update>
 
 
     <select id="findByUserName" parameterType="User" resultMap="UserResult">
