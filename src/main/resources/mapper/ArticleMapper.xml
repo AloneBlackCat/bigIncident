@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zpq.bigincident.mapper.ArticleMapper">
+    <resultMap id="ArticleResult" type="Article">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="coverImg" column="cover_img" />
+        <result property="state" column="state" />
+        <result property="categoryId" column="category_id" />
+        <result property="createUser" column="create_user" />
+        <result property="createTime" column="create_time" />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="ArticleVo">
+        select id, title, content, cover_img, `state`, category_id, create_user, create_time, update_time from article
+    </sql>
+
+    <insert id="add" parameterType="Article">
+        insert into article(title, content, cover_img, `state`, category_id, create_user, create_time, update_time)
+            values (#{title}, #{content}, #{coverImg}, #{state}, #{categoryId}, #{createUser}, now(), now())
+    </insert>
+
+    <update id="update" parameterType="Article">
+        update article set title = #{title}, content = #{content}, cover_img = #{coverImg}, `state` = #{state}, category_id = #{categoryId}, update_time = now()
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from article where id = #{id} and create_user = #{createUser}
+    </delete>
+
+    <select id="getArticle" resultMap="ArticleResult" parameterType="Article">
+        <include refid="ArticleVo" />
+        where id = #{id}
+    </select>
+
+</mapper>
