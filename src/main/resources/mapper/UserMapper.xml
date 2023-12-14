@@ -19,6 +19,16 @@
         from user
     </sql>
 
+    <update id="updateUser" parameterType="User">
+        update user
+        <set>
+            <if test="nickName != null and nickName != ''">nickname = #{nickName},</if>
+            <if test="email != null and email != '' ">email = #{email},</if>
+            update_time = sysdate()
+        </set>
+        where id = #{id}
+    </update>
+
 
     <select id="findByUserName" parameterType="User" resultMap="UserResult">
         <include refid="UserVo" />
