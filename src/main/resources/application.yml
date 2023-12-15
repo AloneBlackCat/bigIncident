@@ -24,3 +24,10 @@ logging:
   level:
     com.zpq.bigincident.mapper: debug
     org.springframework: warn
+# 腾讯COS服务配置信息
+tenCentCos:
+  secretId: xxxx
+  secretKey: xxx
+  cosRegion: ap-guangzho
+  bucketName: big-event-1234556
+  tencentDomain: https://big-event-1234556.cos.ap-guangzho.myqcloud.com/

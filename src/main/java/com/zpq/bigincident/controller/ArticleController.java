@@ -16,8 +16,8 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/list")
-    public <T> Result<T> list(Integer pageNum,
-                              Integer pageSize,
+    public <T> Result<T> list(@RequestParam Integer pageNum,
+                              @RequestParam Integer pageSize,
                               /*@RequestParam(required = false)*/ Integer categoryId,
                               /*@RequestParam(required = false)*/ String state) {
         PageBean<Article> articleList = articleService.list(pageNum, pageSize, categoryId, state);
@@ -25,7 +25,7 @@ public class ArticleController {
     }
 
     @GetMapping
-    public <T> Result<T> getArticle(Integer id) {
+    public <T> Result<T> getArticle(@RequestParam Integer id) {
         return Result.success(articleService.getArticle(id));
     }
 
@@ -42,7 +42,7 @@ public class ArticleController {
     }
 
     @DeleteMapping
-    public <T> Result<T> delete(Integer id) {
+    public <T> Result<T> delete(@RequestParam Integer id) {
         articleService.delete(id);
         return Result.success();
     }

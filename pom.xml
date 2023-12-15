@@ -17,7 +17,12 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
-
+        <!-- 云服务存储 -->
+        <dependency>
+            <groupId>com.qcloud</groupId>
+            <artifactId>cos_api</artifactId>
+            <version>5.6.137</version>
+        </dependency>
         <!-- 分页插件 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>

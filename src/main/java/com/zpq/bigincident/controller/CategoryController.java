@@ -23,7 +23,7 @@ public class CategoryController {
     }
 
     @GetMapping("/detail")
-    public <T> Result<T> getCategory(Integer id) {
+    public <T> Result<T> getCategory(@RequestParam Integer id) {
         return Result.success(categoryService.getCategory(id));
     }
 
