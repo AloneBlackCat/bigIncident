@@ -16,4 +16,6 @@ public interface CategoryMapper {
     Category selectById(@Param("id") Integer id, @Param("createUser") Integer createUser);
 
     void update(Category category);
+
+    void delete(Integer id);
 }

@@ -25,6 +25,9 @@
         update category set category_name = #{categoryName}, category_alias = #{categoryAlias}, update_time = now()
         where id = #{id}
     </update>
+    <delete id="delete" parameterType="integer">
+        delete from category where id = #{id}
+    </delete>
 
     <select id="selectList" resultMap="CategoryResult" parameterType="Category">
         <include refid="CategoryVo" />
